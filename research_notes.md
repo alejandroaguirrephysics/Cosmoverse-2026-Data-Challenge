@@ -29,6 +29,6 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - Determined bluer/lower color edge of rgb to be at 1.5 (second peak for the bootstrap sample if placed at ~1.4 which seemed to be the bluer edge of the RGB, thus included until 1.5 ), and redder/higher color edge to be ~0.8
 - Kept scale_factor at 1.0, as all recorded stars were sufficiently removed from the galactic bulge (additionally, changing scale_factor within recommended ranges had no impact on which stars were included)
 - For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as the peak came out pretty clean, and I did not want to bias brightwards
-![CMD plots of NG4258 and NGC1316 with selection band 0.81-1.5](images/NGC1316)
+![CMD plots of NG4258 and NGC1316 with selection band 0.81-1.5](images/NGC1316.png)
 
 
