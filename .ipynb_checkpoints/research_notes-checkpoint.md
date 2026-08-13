@@ -69,7 +69,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - For F606W filter, determined bluer/lower color edge of rgb to be at 1.4 (messier/uncertain peak for the bootstrap sample if placed at 1.5, thus lowered to 1.4), and redder/higher color edge to be 0.95 (any higher or lower again created a more uncertain peak for both NGC 4258 and consequently NGC 1404 in a similar manner)
 - For F555W filter, I used RGB color constraints of 1.4-2, as wider, shifted, or narrower constraints resulted in non unimodal/gaussian bootstrap samples and large error
 - Moved scale_factor at 0.8, as any larger scale_factor resulted in multiple peaks in the bootstrap sample and higher error, a direct consequence of undersampling. Did not go any lower so as to avoid contamination by the galactic bulge
-- For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as the peak came out pretty clean, and I did not want to bias brightwards, again using a middleward approach to minimize both bias and noise
+- On this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as the peak came out pretty clean, and I did not want to bias brightwards, again using a middleward approach to minimize both bias and noise
 #### Systematic Uncertainty
 - The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1404. Parameters mentioned in the first column are the only ones being changed. Since my color_hi for the F606W filter was set to 1.4 and 2 for the F555W filter, I will test a color_hi variation of +0.1 as opposed to +0.2, to avoid going past the flat TRGB limits placed by Jang & Lee 2017
 
@@ -94,3 +94,40 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - With a consistent use of EDD, low extinction, minimal inclination, and no known high densities, photometric zero-point errors, extinction, internal extinction, and crowding/blending are respectively very minimal.
 ![CMD Plots for NG1404](images/NGC1404.png)
 *CMD plots of NG4258 and NGC1404 with selection band 0.95-1.4 on F606W filter*
+### NGC 1365
+#### Distance Modulus / Tip-Contrast
+| Parameter | Value |
+|-----------|-------|
+| mu_target | 31.209 ± 0.060 mag |
+| d_Mpc | 17.45 ± 0.48 Mpc |
+| tip_contrast_anchor | inf |
+| tip_contrast_target | inf |
+#### Parameter Choices
+- For the F606W filter, I chose to have color constraints of 0.7-1.42, as on the lower end differences up until 1 and and down until 0.5 had minimal impact and only introduced further unreliable contamination, and on the higher end there was a slightly lower than 1.5 mag drop off in star density, thus I lowered it to 1.42 to eliminate contamination but maintain a sufficient sample size
+- For the F555W filter, I chose color constraints of 1-2.1, as on the lower end differences up until 1.5 and and down until 0.5 had minimal impact and only introduced further unreliable contamination, and anything lower than 2.1 introduced a significant amount of noise due to undersampling
+- Moved scale_factor at 0.8, as any larger scale_factor resulted in multiple peaks in the bootstrap sample and higher error, a direct consequence of undersampling. Did not go any lower so as to avoid contamination by the galactic bulge
+- Since this was a noisier galaxy with less definition, I decided to increase tau to 0.13 too smooth out that lower definition, and also to minimize noise while still maintaining an unbiased result
+- #### Systematic Uncertainty
+- The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1365. Parameters mentioned in the first column are the only ones being changed. Since my color_hi for the F606W filter was set to 1.42 and 2.1 for the F555W filter, I will respectively only test a color_hi variation of +0.08 as opposed to +0.2 for the F606W filter, and only a color_hi variation of -0.2 as opposed so both -0.2 and +0.2, so as to avoid going past the flat TRGB limits placed by Jang & Lee 2017
+
+| Parameter | Value | TRGB Magnitude |
+|-----------|-------|----------------|
+| none | N/A | 27.359
+| tau | 0.05 | **27.449**
+| tau | 0.1 | **27.399**
+| tau | 0.15 | 27.339
+| tau | 0.2 | **27.319**
+| color_hi F606W | 1.5 | 27.349
+| color_hi F606W | 1.22 | **27.399**
+| color_lo F606W| 0.9 | 27.349
+| color_lo F606W| 0.5 | 27.359
+| color_lo F555W | 1.2 | 27.359
+| color_lo F555W | 0.8 | 27.359
+| color_hi F555W| 1.9 | 27.359
+| scale_factor | 1.0 | 27.359
+| scale_factor | 1.2 | 27.328
+
+- While everything else maintains within the 0.03 magnitude variations of the TRGB, any values of tau below or above the ~0.13-0.15 range introduce respectively too much noise or too much TRGB shifting due to excessive smoothing. Additionally, lowering the F606W filter color_hi limited the sample too much, introducing error and creating the unhealthy error above 0.03 mag of the TRGB.
+- With a consistent use of EDD, low extinction, and no known high densities, photometric zero-point errors,  internal extinction, and crowding/blending are respectively very minimal. However, the inclination is a little higher than other galaxies, introducing the risk of dust contaminating the results.
+![CMD Plots for NG1365](images/NGC1365.png)
+*CMD plots of NG4258 and NGC1365 with selection band 0.7-1.42 on F606W filter*
