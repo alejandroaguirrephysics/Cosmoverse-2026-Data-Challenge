@@ -1,7 +1,7 @@
 host,mu,sigma_mu,galaxy_name,trgb_app,trgb_app_anchor,tip_contrast,n_stars,n_faint,phot_source,color_lo_f606w,color_hi_f606w,color_lo_f555w,color_hi_f555w,tau,bin_width,edge_weighting,poisson_floor,scale_factor,mag_bright,mag_faint,n_boot,status
 n1404,30.6647,0.0603,NGC1404,26.797,25.529,inf,1402,776,EDD,0.95,1.4,1.4,2.0,0.1,0.01,poisson,1.0,0.8,,,1000.0,ok
 n1309,32.171,0.0643,NGC1309,28.122,25.348,2.22,1033,699,EDD,,,,,,,,,,,,,ok
-n1365,31.4275,0.0633,NGC1365,27.379,25.348,4.44,5397,3399,EDD,,,,,,,,,,,,,ok
+n1365,31.2088,0.0596,NGC1365,27.359,25.547,inf,5484,3333,EDD,0.7,1.42,1.0,2.1,0.13,0.01,poisson,1.0,0.8,,,1000.0,ok
 n1448,31.359,0.063,NGC1448,27.31,25.348,3.49,3024,1931,EDD,,,,,,,,,,,,,ok
 n3021,31.4428,0.6983,NGC3021,27.394,25.348,3.05,1207,566,EDD,,,,,,,,,,,,,ok
 n3370,31.9398,0.3147,NGC3370,27.891,25.348,2.02,628,393,EDD,,,,,,,,,,,,,ok
