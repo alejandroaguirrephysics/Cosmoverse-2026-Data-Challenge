@@ -29,30 +29,34 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 #### Distance Modulus / Uncertainty / Tip-Contrast
 | Parameter | Value |
 |-----------|-------|
-| mu_target | 31.458 ± 0.054 mag |
-| d_Mpc | 19.57 ± 0.49 Mpc |
-| tip_contrast_anchor | inf |
-| tip_contrast_target | inf |
+| mu_target | 31.258 ± 0.062 mag |
+| d_Mpc | 17.85 ± 0.51 Mpc |
+| tip_contrast_anchor | 4.9 |
+| tip_contrast_target | 6.2 |
 #### Parameter Choices
-- For F606W filter, determined bluer/lower color edge of rgb to be at 1.5 (second peak for the bootstrap sample if placed at ~1.4 which seemed to be the bluer edge of the RGB, thus included until 1.5 ), and redder/higher color edge to be 0.81, and used default constraints of 1.6-2.1 with F555W filter
-- Kept scale_factor at 1.0, as all recorded stars were sufficiently removed from the galactic bulge (additionally, changing scale_factor within recommended ranges had no impact on which stars were included)
-- For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as the peak came out pretty clean, and I did not want to bias brightwards
+- For F606W filter, determined bluer/lower color edge of rgb to be at 1.45 (second peak for the bootstrap_anchor sample if placed at 1.5, second peak for the bootstrap_target sample if placed at ~1.4, so found a middle ground), and redder/higher color edge to be 0.81
+- With the F555W filter, I used color constraints of 1-2.1 so as to maintain the entire RGB spectrum while still minimizing contamination
+- Set scale_factor at 0.8, to provide a sufficient sample for NGC 4258/anchor galaxy while still excluding the galactic bulge
+- For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as I did not want to bias brightwards
 #### Systematic Uncertainty
-- The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1316. Parameters mentioned in the first column are the only ones being changed. Poisson results were very similar to hatt results, eliminating that source of error. Since my color_hi was already set at 1.5, I will not include a color_hi variation of +0.2. (Left default constraints for color constraints of F555W, did not test uncertainties)
-
-| Parameter | Value | TRGB Magnitude |
+- The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1316. Parameters mentioned in the first column are the only ones being changed. Poisson results were very similar to hatt results, eliminating that source of error. Since my color_hi for F606W was already set at 1.45, instead of testing a color_hi increase of 0.2, I will test a color_hi increase of 0.05, and since my color_hi for F555W is already 2.1, I will only test a decrease of 0.2 and not an increase, to avoid going past the flat TRGB limits placed by Jang & Lee 2017
+| Parameter | Value | NGC1316 TRGB Magnitude |
 |-----------|-------|----------------|
 | none | N/A | 27.406
-| tau | 0.05 | 27.406 
+| tau | 0.05 | 27.406
 | tau | 0.15 | 27.396
-| tau | 0.2 |27.406 |
-| color_hi F606W | 1.3 | **27.836**
-| color_lo F606W| 1.01 | 27.396
+| tau | 0.2 | 27.416
+| color_hi F606W | 1.5 | 27.406
+| color_hi F606W| 1.25 | **tip_contrast <3**
+| color_lo F606W| 1.01 | 27.386
 | color_lo F606W| 0.61 | 27.416
-| scale_factor | 0.8 | 27.406
+| color_hi F555W| 1.9 | 27.406
+| color_lo F555W| 1.2 | 27.406
+| color_lo F555W| 0.8 | 27.406
+| scale_factor | 1 | 27.406
 | scale_factor | 1.2 | 27.406
 
-- While everything else maintains well within the 0.03 magnitude variations of the TRGB, adjusting the color_hi value to 1.3 significantly changes the TRGB magnitude (by .43, or ~14x the healthy variance of 0.03), clearly showing that the stars between 1.3 and 1.5 are significant to finding the TRGB. This is verified by the fact that a color_hi value of 1.3 does not produce a gaussian bootstrap sample, thus meaning that the TRGB is not full described in this case.
+- While everything else maintains well within the 0.03 magnitude variations of the TRGB, adjusting the color_hi value for the F606W filter to 1.25 does not yield a TRGB result due to a low tip_contrast, thus meaning that making the color_hi too low does not allow for proper description of the TRGB
 - With a consistent use of EDD, low extinction and minimal inclination, photometric zero-point errors, extinction, and internal extinction are respectively very minimal. However, since NGC 1316 is a merger of several other smaller galaxies, there is a risk for blending/crowding even in the halo region, which biases the TRGB brighter and distances to galaxies smaller, introducing uncertainty.
 ![CMD Plots for NG1316](images/NGC1316.png)
 *CMD plots of NG4258 and NGC1316 with selection band 0.81-1.5 on F606W filter*
@@ -63,8 +67,8 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 |-----------|-------|
 | mu_target | 30.665 ± 0.060 mag |
 | d_Mpc | 13.58 ± 0.38 Mpc |
-| tip_contrast_anchor | inf |
-| tip_contrast_target | inf |
+| tip_contrast_anchor | 5.7 |
+| tip_contrast_target | 9.81 |
 #### Parameter Choices
 - For F606W filter, determined bluer/lower color edge of rgb to be at 1.4 (messier/uncertain peak for the bootstrap sample if placed at 1.5, thus lowered to 1.4), and redder/higher color edge to be 0.95 (any higher or lower again created a more uncertain peak for both NGC 4258 and consequently NGC 1404 in a similar manner)
 - For F555W filter, I used RGB color constraints of 1.4-2, as wider, shifted, or narrower constraints resulted in non unimodal/gaussian bootstrap samples and large error
@@ -73,7 +77,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 #### Systematic Uncertainty
 - The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1404. Poisson results were very similar to hatt results, eliminating that source of error. Parameters mentioned in the first column are the only ones being changed. Since my color_hi for the F606W filter was set to 1.4 and 2 for the F555W filter, I will test a color_hi variation of +0.1 as opposed to +0.2, to avoid going past the flat TRGB limits placed by Jang & Lee 2017
 
-| Parameter | Value | TRGB Magnitude |
+| Parameter | Value | NGC1404 TRGB Magnitude |
 |-----------|-------|----------------|
 | none | N/A | 26.797
 | tau | 0.05 | **26.857**
@@ -100,8 +104,8 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 |-----------|-------|
 | mu_target | 31.209 ± 0.060 mag |
 | d_Mpc | 17.45 ± 0.48 Mpc |
-| tip_contrast_anchor | inf |
-| tip_contrast_target | inf |
+| tip_contrast_anchor | 5.1 |
+| tip_contrast_target | 4.91 |
 #### Parameter Choices
 - For the F606W filter, I chose to have color constraints of 0.7-1.42, as on the lower end differences up until 1 and and down until 0.5 had minimal impact and only introduced further unreliable contamination, and on the higher end there was a slightly lower than 1.5 mag drop off in star density, thus I lowered it to 1.42 to eliminate contamination but maintain a sufficient sample size
 - For the F555W filter, I chose color constraints of 1-2.1, as on the lower end differences up until 1.5 and and down until 0.5 had minimal impact and only introduced further unreliable contamination, and anything lower than 2.1 introduced a significant amount of noise due to undersampling
@@ -110,7 +114,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 #### Systematic Uncertainty
 - The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1365. Poisson results were very similar to hatt results, eliminating that source of error. Parameters mentioned in the first column are the only ones being changed. Since my color_hi for the F606W filter was set to 1.42 and 2.1 for the F555W filter, I will respectively only test a color_hi variation of +0.08 as opposed to +0.2 for the F606W filter, and only a color_hi variation of -0.2 as opposed so both -0.2 and +0.2, so as to avoid going past the flat TRGB limits placed by Jang & Lee 2017
 
-| Parameter | Value | TRGB Magnitude |
+| Parameter | Value | NGC1365 TRGB Magnitude |
 |-----------|-------|----------------|
 | none | N/A | 27.359
 | tau | 0.05 | **27.449**
@@ -138,8 +142,8 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 |-----------|-------|
 | mu_target | 30.431 ± 0.052 mag |
 | d_Mpc | 12.20 ± 0.29 Mpc |
-| tip_contrast_anchor | inf |
-| tip_contrast_target | inf |
+| tip_contrast_anchor | 8.0 |
+| tip_contrast_target | 4.04 |
 #### Parameter Choices
 - For the F606W filter, I chose to have color constraints of 0.89-1.4 as 0.89 falls right along where the line between high and low star density on the CMD changes from diagonal to vertical, preventing contamination as much as possible, and 1.4 instead of 1.5 as to eliminate other peaks/further conatmination, while still maintaining a sufficient sample size. I kept color constraints of 1.5-2.1 for the F555W filter, similar to that of the default as other wider, more limited, or shifted constraints yielded excessive contamination.
 - I kept the scale_factor at 1 for this galaxy, as anything lower only affected the anchor galaxy while simultaneously introducing more room for contamination, and anything higher limited the sample size excessively
@@ -147,7 +151,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 #### Systematic Uncertainty
 - The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1365. Poisson results were very similar to hatt results, eliminating that source of error. Parameters mentioned in the first column are the only ones being changed. I will only test a variance of -0.2 on the color_hi constraint for the F555W filter, and a +0.1 instead of +0.2 variance on the color_hi constraint for the F606W filter so as to avoid going past the flat TRGB limits placed by Jang & Lee 2017
 
-| Parameter | Value | TRGB Magnitude |
+| Parameter | Value | M96 TRGB Magnitude |
 |-----------|-------|----------------|
 | none | N/A | 26.433
 | tau | 0.05 | 26.453
