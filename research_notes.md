@@ -176,6 +176,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - M96 was not accepted by either the TRGB_to_H0 or mu_to_H0 pipeline, so its contribution to any H0 values is excluded
 ### mu_to_H0 Pipeline Results
 - Only NGC1365 was accepted for this pipeline, and using the mu_to_H0.py file with my mu and sigma_mu values for this galaxy, I got:
+
 | M_B | H0 | chi2/dof |
 |-----|----|----------|
 | -19.3524 ± 0.1160 mag | 69.8231 ± 3.7304 km/s/Mpc | 234.6/277 = 0.847
@@ -183,6 +184,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - Although this value looks totally plausible, with the way that this pipeline works, I am really just changing one value out of 40 default ones, meaning that this H0 is not very useful
 ### TRGB_to_H0 Pipeline Results
 - NGC1365, NGC1316, and NGC1404 were accepted for this pipeline, and using the mu_to_H0.py file with my mu and sigma_mu values for these galaxies, I got:
+
 | Individual/Combined | M_B | H0 | chi2/dof |
 |---------------------|-----|----|----------|
 | I/NGC1365 | -19.2647 ± 0.2889 mag | 72.9842 ± 9.7143 km/s/Mpc | 435.6/496 = 0.878
