@@ -7,7 +7,7 @@ D. Scolnic et al 2023 ApJL 954 L31 - CATS paper, emphasizes unsupervised approac
 
 Taylor J. Hoyt et al 2026 ApJ 1002 11 - CATS has much poorer precision than EDD in predicting TRGB, ~3x scatter of measurements, CATS actually biased to tip of AGB for NGC 4536 and NGC 4038/9 - doi: [10.3847/1538-4357/ae29eb](https://doi.org/10.3847/1538-4357/ae29eb)
 
-Gagandeep S. Anand et al 2021 AJ 162 80 - Many improvements in resolving individual stars of galaxies over time, focusing on multiple methods to maximize resolution and resolve stars of a galaxies halo, emphasizing the collection of as much information as possible - doi: [10.3847/1538-3881/ac0440](https://doi.org/10.3847/1538-3881/ac0440)
+Gagandeep S. Anand et al 2021 AJ 162 80 - Many improvements in resolving individual stars of galaxies over time, focusing on multiple methods to maximize resolution and resolve stars of a galaxy's halo, emphasizing the collection of as much information as possible - doi: [10.3847/1538-3881/ac0440](https://doi.org/10.3847/1538-3881/ac0440)
 
 ### Decision
 - EDD allows for greater control of which stars to eliminate in a galaxy, particularly important for the central/denser areas
@@ -16,7 +16,7 @@ Gagandeep S. Anand et al 2021 AJ 162 80 - Many improvements in resolving individ
 - **Using EDD for reliability, but remaining cautious for bias**
 
 ## EDD Undersampling vs. Contamination
-This is a major problem in this study, whether with spatial clipping, star luminosity constraints, or luminosity function smoothing levels. I will do my best to sample with minimum contamination while also maintaining a sufficient sample size.
+This is a major problem in this study, whether with spatial clipping, star luminosity constraints, or luminosity function smoothing levels. I will do my best to sample with minimal contamination while also maintaining a sufficient sample size.
 
 ## Sobel Edge Detection
 - Simple: regular old finite difference
@@ -34,7 +34,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 | tip_contrast_anchor | 4.9 |
 | tip_contrast_target | 6.2 |
 #### Parameter Choices
-- For F606W filter, determined bluer/lower color edge of rgb to be at 1.45 (second peak for the bootstrap_anchor sample if placed at 1.5, second peak for the bootstrap_target sample if placed at ~1.4, so found a middle ground), and redder/higher color edge to be 0.81
+- For F606W filter, determined high color edge of rgb to be at 1.45 (second peak for the bootstrap_anchor sample if placed at 1.5, second peak for the bootstrap_target sample if placed at ~1.4, so found a middle ground), and low color edge to be 0.81
 - With the F555W filter, I used color constraints of 1-2.1 so as to maintain the entire RGB spectrum while still minimizing contamination
 - Set scale_factor at 0.8, to provide a sufficient sample for NGC 4258/anchor galaxy while still excluding the galactic bulge
 - For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as I did not want to bias brightwards
@@ -70,7 +70,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 | tip_contrast_anchor | 5.7 |
 | tip_contrast_target | 9.81 |
 #### Parameter Choices
-- For F606W filter, determined bluer/lower color edge of rgb to be at 1.4 (messier/uncertain peak for the bootstrap sample if placed at 1.5, thus lowered to 1.4), and redder/higher color edge to be 0.95 (any higher or lower again created a more uncertain peak for both NGC 4258 and consequently NGC 1404 in a similar manner)
+- For F606W filter, determined high color edge of rgb to be at 1.4 (messier/uncertain peak for the bootstrap sample if placed at 1.5, thus lowered to 1.4), and low color edge to be 0.95 (any higher or lower again created a more uncertain peak for both NGC 4258 and consequently NGC 1404 in a similar manner)
 - For F555W filter, I used RGB color constraints of 1.4-2, as wider, shifted, or narrower constraints resulted in non unimodal/gaussian bootstrap samples and large error
 - Moved scale_factor at 0.8, as any larger scale_factor resulted in multiple peaks in the bootstrap sample and higher error, a direct consequence of undersampling. Did not go any lower so as to avoid contamination by the galactic bulge
 - On this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as the peak came out pretty clean, and I did not want to bias brightwards, again using a middleward approach to minimize both bias and noise
@@ -95,7 +95,7 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 | scale_factor | 1.2 | **27.118**
 
 - While everything else maintains within the 0.03 magnitude variations of the TRGB, a tau of 0.05 creates a significant variation of ~2x the healthy amount, caused by noise in NGC 1404 probably due to the minimal spatial clipping. Here, I chose to get a sufficient sample of NGC 1404 halo stars and risk some contamination rather than undersample and risk inaccurate findings. I was also unable to calculate a TRGB when adjusting the color_hi F606W value to 1.2 due to the lack of 400 stars 1 magnitude below the TRGB, thus I am unable to find out if there is systematic error with a lower color_hi constraint on the F606W filter. Additionally, the large error when increasing scale_factor to 1 and 1.2 can be attributed to an insufficient sample size, thus providing incorrect determinations.
-- With a consistent use of EDD, low extinction, minimal inclination, and no known high densities, photometric zero-point errors, extinction, internal extinction, and crowding/blending are respectively very minimal.
+- With a consistent use of EDD, minimal inclination, and no known high densities, photometric zero-point errors, internal extinction, and crowding/blending are respectively very minimal. However, since the galaxy is passing through Fornax intracluster medium, the extinction could be very significant with this galaxy, introducing a major systematic uncertainty.
 ![CMD Plots for NG1404](images/NGC1404.png)
 *CMD plots of NG4258 and NGC1404 with selection band 0.95-1.4 on F606W filter*
 ### NGC 1365
@@ -171,3 +171,23 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - With a consistent use of EDD, low extinction, and no known high densities, photometric zero-point errors, extinction, and crowding/blending are respectively very minimal. However, even though the inclination is pretty ideal, M96 is known for having inconsistent and uneven patches of dust and gas throughout, thus leading to a real possibility of internal extinction blurring results and introducing systematic error
 ![CMD Plots for M96](images/M96.png)
 *CMD plots of NG4258 and M96 with selection band 0.89-1.4 on F606W filter*
+
+## H0 Measurement
+- M96 was not accepted by either the TRGB_to_H0 or mu_to_H0 pipeline, so its contribution to any H0 values is excluded
+### mu_to_H0 Pipeline Results
+- Only NGC1365 was accepted for this pipeline, and using the mu_to_H0.py file with my mu and sigma_mu values for this galaxy, I got:
+| M_B | H0 | chi2/dof |
+|-----|----|----------|
+| -19.3524 ± 0.1160 mag | 69.8231 ± 3.7304 km/s/Mpc | 234.6/277 = 0.847
+
+- Although this value looks totally plausible, with the way that this pipeline works, I am really just changing one value out of 40 default ones, meaning that this H0 is not very useful
+### TRGB_to_H0 Pipeline Results
+- NGC1365, NGC1316, and NGC1404 were accepted for this pipeline, and using the mu_to_H0.py file with my mu and sigma_mu values for these galaxies, I got:
+| Individual/Combined | M_B | H0 | chi2/dof |
+|---------------------|-----|----|----------|
+| I/NGC1365 | -19.2647 ± 0.2889 mag | 72.9842 ± 9.7143 km/s/Mpc | 435.6/496 = 0.878
+| I/NGC1404 | -18.2506 ± 0.1202 mag | 116.4283 ± 6.4548 km/s/Mpc | 438.3/497 = 0.882
+| I/NGC1316 | -19.3732 ± 0.2165 mag | 69.4275 ± 6.9271 km/s/Mpc | 436.2/497 = 0.878
+| C/All | -18.5963 ± 0.0996 mag | 99.3152 ± 4.5648  km/s/Mpc | 465.3/502 = 0.927
+
+- NGC1365 and NGC1316 seem decently consistent with modern measured values of H0, albeit with significant error, but NGC1404 seems too far off with ~116 km/s/Mpc, which can probably be attributed to the fact that NGC1404 is passing through Fornax intracluster medium, likely producing significant error in the population of halo stars used to calculate the TRGB.
