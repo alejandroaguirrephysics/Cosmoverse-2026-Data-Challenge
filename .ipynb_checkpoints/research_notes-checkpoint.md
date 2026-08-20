@@ -40,21 +40,22 @@ This is a major problem in this study, whether with spatial clipping, star lumin
 - For the bootstrap sampling on this galaxy, I used a tau of 0.1 to eliminate any noise, but nothing higher as I did not want to bias brightwards
 #### Systematic Uncertainty
 - The following table is the variations in the TRGB created by adjusting tau, color range, and spatial clipping for NGC 1316. Parameters mentioned in the first column are the only ones being changed. Poisson results were very similar to hatt results, eliminating that source of error. Since my color_hi for F606W was already set at 1.45, instead of testing a color_hi increase of 0.2, I will test a color_hi increase of 0.05, and since my color_hi for F555W is already 2.1, I will only test a decrease of 0.2 and not an increase, to avoid going past the flat TRGB limits placed by Jang & Lee 2017
+
 | Parameter | Value | NGC1316 TRGB Magnitude |
-|-----------|-------|----------------|
-| none | N/A | 27.406
-| tau | 0.05 | 27.406
-| tau | 0.15 | 27.396
-| tau | 0.2 | 27.416
-| color_hi F606W | 1.5 | 27.406
-| color_hi F606W| 1.25 | **tip_contrast <3**
-| color_lo F606W| 1.01 | 27.386
-| color_lo F606W| 0.61 | 27.416
-| color_hi F555W| 1.9 | 27.406
-| color_lo F555W| 1.2 | 27.406
-| color_lo F555W| 0.8 | 27.406
-| scale_factor | 1 | 27.406
-| scale_factor | 1.2 | 27.406
+|-----------|-------|------------------------|
+| none | N/A | 27.406 |
+| tau | 0.05 | 27.406 |
+| tau | 0.15 | 27.396 |
+| tau | 0.2 | 27.416 |
+| color_hi F606W | 1.5 | 27.406 |
+| color_hi F606W| 1.25 | **tip_contrast <3** |
+| color_lo F606W| 1.01 | 27.386 |
+| color_lo F606W| 0.61 | 27.416 |
+| color_hi F555W| 1.9 | 27.406 |
+| color_lo F555W| 1.2 | 27.406 |
+| color_lo F555W| 0.8 | 27.406 |
+| scale_factor | 1 | 27.406 |
+| scale_factor | 1.2 | 27.406 |
 
 - While everything else maintains well within the 0.03 magnitude variations of the TRGB, adjusting the color_hi value for the F606W filter to 1.25 does not yield a TRGB result due to a low tip_contrast, thus meaning that making the color_hi too low does not allow for proper description of the TRGB
 - With a consistent use of EDD, low extinction and minimal inclination, photometric zero-point errors, extinction, and internal extinction are respectively very minimal. However, since NGC 1316 is a merger of several other smaller galaxies, there is a risk for blending/crowding even in the halo region, which biases the TRGB brighter and distances to galaxies smaller, introducing uncertainty.
